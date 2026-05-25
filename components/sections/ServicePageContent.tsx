@@ -4,12 +4,15 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
 import { ArrowLeft, Camera, Play } from "lucide-react";
-import type { ServiceDetail, ServiceSpec, ServiceDeliverable } from "@/lib/services-data";
+import { servicesData } from "@/lib/services-data";
+import type { ServiceSpec, ServiceDeliverable } from "@/lib/services-data";
 import FadeIn from "@/components/animations/FadeIn";
 
 const EASE: [number, number, number, number] = [0.21, 0.47, 0.32, 0.98];
 
-export default function ServicePageContent({ service }: { service: ServiceDetail }) {
+export default function ServicePageContent({ slug }: { slug: string }) {
+  const service = servicesData[slug];
+  if (!service) return null;
   const heroRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,

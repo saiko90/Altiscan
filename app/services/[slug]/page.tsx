@@ -25,5 +25,5 @@ export default async function ServicePage({ params }: { params: Params }) {
 
   if (!service) notFound();
 
-  return <ServicePageContent service={service} />;
+  return <ServicePageContent slug={slug} />;
 }
